@@ -28,7 +28,7 @@ public class ServletGetAddStudent extends HttpServlet {
             int tablecounter=1;
             printWriter.println("<html>");
             printWriter.println("<h1 style=\"text-align:center\";>Students list</h1>");
-            printWriter.println("<a href=\"/editSave\" id=\"addbutton\" >Add student</a>");
+            printWriter.println("<a href=\"/editSave?id=new\" id=\"addbutton\" >Add student</a>");
             printWriter.println("<table style=\"border:1px solid black\" id=\"table\">");
             printWriter.println("<caption>This is table caption</caption>");
             printWriter.println(
