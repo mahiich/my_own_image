@@ -51,7 +51,8 @@ public class ServletGetAddStudent extends HttpServlet {
                 printWriter.println("<td>"+resultSet.getString("email")+"</td>");
                 printWriter.println("<td>"+resultSet.getString("course")+"</td>");
                 printWriter.println("<td>"+resultSet.getString("age")+"</td>");
-                printWriter.println("<td></td>");
+                printWriter.println("<td><a href=\"/editSave?id="+resultSet.getShort("id")+"\">Edit</a></td>");
+                printWriter.println("<td><a href=\"/delete?id="+resultSet.getShort("id")+"\">Delete</a></td>");
 
                 tablecounter++;
                 printWriter.println("</tr>");
