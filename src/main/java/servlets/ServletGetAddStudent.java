@@ -28,6 +28,7 @@ public class ServletGetAddStudent extends HttpServlet {
             int tablecounter=1;
             printWriter.println("<html>");
             printWriter.println("<h1 style=\"text-align:center\";>Students list</h1>");
+            printWriter.println("<a href=\"/editSave\" ></a>");
             printWriter.println("<table border:2px>");
             printWriter.println(
                     "  <tr>\n" +
@@ -43,12 +44,16 @@ public class ServletGetAddStudent extends HttpServlet {
 
             while (resultSet.next()){
                 printWriter.println("<tr>");
-                printWriter.println("<td>");
 
+                printWriter.println("<td>"+tablecounter+"</td>");
+                printWriter.println("<td>"+resultSet.getShort("id")+"</td>");
+                printWriter.println("<td>"+resultSet.getString("name")+"</td>");
+                printWriter.println("<td>"+resultSet.getString("email")+"</td>");
+                printWriter.println("<td>"+resultSet.getString("course")+"</td>");
+                printWriter.println("<td>"+resultSet.getString("age")+"</td>");
+                printWriter.println("<td></td>");
 
-
-
-
+                tablecounter++;
                 printWriter.println("</tr>");
             }
 
