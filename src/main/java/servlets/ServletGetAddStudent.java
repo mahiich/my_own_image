@@ -25,13 +25,62 @@ public class ServletGetAddStudent extends HttpServlet {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            int tablecounter=1;
+            printWriter.println("<html>");
+            printWriter.println("<h1 style=\"text-align:center\";>Students list</h1>");
+            printWriter.println("<table border:2px>");
+            printWriter.println(
+                    "  <tr>\n" +
+                    "    <th>#</th>\n" +
+                    "    <th>id</th>\n" +
+                    "    <th>name</th>\n" +
+                    "    <th>email</th>\n" +
+                    "    <th>course</th>\n" +
+                    "    <th>age</th>\n" +
+                    "    <th>edit</th>\n" +
+                    "    <th>delete</th>\n" +
+                    "  </tr>");
 
+            while (resultSet.next()){
+                printWriter.println("<tr>");
+                printWriter.println("<td>");
+
+
+
+
+
+                printWriter.println("</tr>");
+            }
+
+
+            printWriter.println("</table>");
+
+
+
+
+
+
+
+
+
+            printWriter.println("<html>");
+
+
+
+
+            preparedStatement.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
 
     }
 
