@@ -40,4 +40,13 @@
         <servlet-name>ServletRegisterForm</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletSearch</servlet-name>
+        <servlet-class>servlets.ServletSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSearch</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
 </web-app>

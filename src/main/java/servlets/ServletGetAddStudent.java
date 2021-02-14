@@ -10,10 +10,21 @@ public class ServletGetAddStudent extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Cookie logincookie = new Cookie("login","mahiich@mail.ru");
+        Cookie passwordcookie = new Cookie("password","Password");
+        logincookie.setSecure(false);
+        passwordcookie.setSecure(false);
+        logincookie.setMaxAge(300);
+        passwordcookie.setMaxAge(300);
+        response.addCookie(logincookie);
+        response.addCookie(passwordcookie);
+
 //        String s=request.getParameter("name");
 
         PrintWriter printWriter = response.getWriter();
         Connection connection = null;
+        System.out.println("Cookie secured:"+logincookie.getValue());
+        System.out.println("Cookie secured:"+passwordcookie.getValue());
         try {
             Class.forName("org.postgresql.Driver");
             String dburl = "jdbc:postgresql://localhost:5432/studentservlet";
@@ -28,6 +39,13 @@ public class ServletGetAddStudent extends HttpServlet {
             int tablecounter=1;
             printWriter.println("<html>");
             printWriter.println("<h1 style=\"text-align:center\";>Students list</h1>");
+            printWriter.println("    " +
+                    "    <div id=\"searchdiv\">\n" +
+                    "        <form method=\"GET\" action=\"/search\">\n" +
+                    "            <input type=\"text\" id=\"fsearch\" required name=\"seaval\" value=\"\">\n" +
+                    "            <input id=\"endterbutton\" style=\"color: darkgreen;\" type=\"submit\" value=\"Search\">\n" +
+                    "        </form>\n" +
+                    "    </div>");
             printWriter.println("<a href=\"/editSave?id=new\" id=\"addbutton\" >Add student</a>");
             printWriter.println("<table style=\"border:1px solid black\" id=\"table\">");
             printWriter.println("<caption>This is table caption</caption>");
