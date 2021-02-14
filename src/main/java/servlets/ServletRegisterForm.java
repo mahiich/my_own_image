@@ -12,6 +12,7 @@ public class ServletRegisterForm extends HttpServlet {
         Cookie[] cookies=request.getCookies();
         PrintWriter printWriter = response.getWriter();
         for (Cookie cookie:cookies) {
+            System.out.println("Cookie: "+cookie);
             Connection connection = null;
             try {
                 Class.forName("org.postgresql.Driver");
