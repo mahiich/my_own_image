@@ -19,7 +19,7 @@ public class ServletGetAddStudent extends HttpServlet {
         response.addCookie(logincookie);
         response.addCookie(passwordcookie);
 
-//        String s=request.getParameter("name");
+        Short page= Short.parseShort(request.getParameter("page"));
 
         PrintWriter printWriter = response.getWriter();
         Connection connection = null;
@@ -66,7 +66,7 @@ public class ServletGetAddStudent extends HttpServlet {
 
                 printWriter.println("<td>"+tablecounter+"</td>");
                 printWriter.println("<td>"+resultSet.getShort("id")+"</td>");
-                printWriter.println("<td>"+resultSet.getString("name")+"</td>");
+                printWriter.println("<td>"+resultSet.getString("name")+"</td>");/* Pagination links */
                 printWriter.println("<td>"+resultSet.getString("email")+"</td>");
                 printWriter.println("<td>"+resultSet.getString("course")+"</td>");
                 printWriter.println("<td>"+resultSet.getString("age")+"</td>");
@@ -79,7 +79,19 @@ public class ServletGetAddStudent extends HttpServlet {
 
 
             printWriter.println("</table>");
-
+            printWriter.println(" " +
+                    "<div class=\"centered\">\n" +
+                    "        <div class=\"pagination\">\n" +
+                    "            <a href=\"#\">&laquo;</a>\n" +
+                    "            <a href=\"#\">1</a>\n" +
+                    "            <a class=\"active\" href=\"#\">2</a>\n" +
+                    "            <a href=\"#\">3</a>\n" +
+                    "            <a href=\"#\">4</a>\n" +
+                    "            <a href=\"#\">5</a>\n" +
+                    "            <a href=\"#\">6</a>\n" +
+                    "            <a href=\"#\">&raquo;</a>\n" +
+                    "        </div>\n" +
+                    "    </div>");
 
 
 
@@ -133,7 +145,35 @@ public class ServletGetAddStudent extends HttpServlet {
                     "background-color:red;\n" +
                     "text-decoration: underline;\n" +
                     "}"+
-
+                    "        /* Pagination links */\n" +
+                    "        \n" +
+                    "        .centered {\n" +
+                    "            text-align: center;\n" +
+                    "            margin: 20px 38% auto;\n" +
+                    "        }\n" +
+                    "        \n" +
+                    "        .pagination a {\n" +
+                    "            color: black;\n" +
+                    "            float: left;\n" +
+                    "            padding: 8px 16px;\n" +
+                    "            text-decoration: none;\n" +
+                    "            transition: background-color .3s;\n" +
+                    "            border: 1px solid #ddd;\n" +
+                    "            border-radius: 5px;\n" +
+                    "            /* Gray */\n" +
+                    "        }\n" +
+                    "        /* Style the active/current link */\n" +
+                    "        \n" +
+                    "        .pagination a.active {\n" +
+                    "            background-color: dodgerblue;\n" +
+                    "            color: white;\n" +
+                    "            border-radius: 5px;\n" +
+                    "        }\n" +
+                    "        /* Add a grey background color on mouse-over */\n" +
+                    "        \n" +
+                    "        .pagination a:hover:not(.active) {\n" +
+                    "            background-color: #ddd;\n" +
+                    "        }"+
                     "</style>");
 
             printWriter.println("<html>");

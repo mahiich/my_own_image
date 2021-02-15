@@ -18,18 +18,23 @@ public class ServletSearch extends HttpServlet {
             String dburl = "jdbc:postgresql://localhost:5432/studentservlet";
             connection = DriverManager.getConnection(dburl, "postgres", "admin");
 
-            String sql = "select * from students";
+            String sql = "select * from students where  name ilike '%"+searchValue+"%'";
             PreparedStatement preparedStatement =
                     connection.prepareStatement(sql);
+//            preparedStatement.setString(1,searchValue);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
-                CharSequence search = searchValue;
-                if (resultSet.getString("name").contains(search)){
                     printWriter.println("<html>");
-                    printWriter.println("<h3>"+resultSet.getString("name")+"</h3>");
+                    printWriter.println("<h3>"+
+                            resultSet.getShort("id")+" "+
+                            resultSet.getString("name")+
+                            resultSet.getString("email")+
+                            resultSet.getShort("course")+
+                            resultSet.getShort("age")+
+                            "</h3>");
                     printWriter.println("</html>");
-                }
+
             }
 
 
